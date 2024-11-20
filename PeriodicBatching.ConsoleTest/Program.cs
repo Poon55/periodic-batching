@@ -9,10 +9,77 @@ namespace PeriodicBatching.ConsoleTest
 {
     class Program
     {
-        public static async Task ExecuteMethod(List<SomeEvent> events)
-        {
-            await Task.Delay(500);
+        #region Task
+        //public static async Task ExecuteMethod(List<SomeEvent> events)
+        //{
+        //    await Task.Delay(500);
 
+        //    Console.WriteLine("#################### PROCESSING START {0}", DateTime.Now.ToString("yyyy-MM-ss HH:mm:ss"));
+
+        //    foreach (var _event in events)
+        //    {
+        //        if (_event.Prop2 == "error")
+        //        {
+        //            throw new Exception();
+        //        }
+
+        //        Console.WriteLine("####################");
+        //        Console.WriteLine(_event.Prop1);
+        //        Console.WriteLine(_event.Prop2);
+        //    }
+
+        //    Console.WriteLine("#################### PROCESSING FINISH");
+        //}
+
+        //public static async Task SingleFailure(Exception e, int failures, int queueTotal)
+        //{
+        //    await Task.Delay(50);
+
+        //    Console.WriteLine("#################### FAILURES {0} - {1}", failures, DateTime.Now.ToString("yyyy-MM-ss HH:mm:ss"));
+        //    Console.WriteLine(e.Message);
+        //}
+
+        //public static async Task DropBatch(List<SomeEvent> events)
+        //{
+        //    await Task.Delay(50);
+
+        //    Console.WriteLine("#################### DropBatch START {0}", DateTime.Now.ToString("yyyy-MM-ss HH:mm:ss"));
+
+        //    foreach (var _event in events)
+        //    {
+        //        Console.WriteLine("####################");
+        //        Console.WriteLine(_event.Prop1);
+        //        Console.WriteLine(_event.Prop2);
+        //    }
+
+        //    Console.WriteLine("#################### DropBatch FINISH");
+        //}
+
+        //public static async Task DropQueue(List<SomeEvent> events)
+        //{
+        //    await Task.Delay(50);
+
+        //    Console.WriteLine("#################### DropQueue START {0}", DateTime.Now.ToString("yyyy-MM-ss HH:mm:ss"));
+
+        //    foreach (var _event in events)
+        //    {
+        //        Console.WriteLine("####################");
+        //        Console.WriteLine(_event.Prop1);
+        //        Console.WriteLine(_event.Prop2);
+        //    }
+
+        //    Console.WriteLine("#################### DropQueue FINISH");
+        //}
+        #endregion
+
+
+
+
+
+        #region Thread
+        public static void ExecuteMethod(List<SomeEvent> events)
+        {
+            Thread.Sleep(500);
             Console.WriteLine("#################### PROCESSING START {0}", DateTime.Now.ToString("yyyy-MM-ss HH:mm:ss"));
 
             foreach (var _event in events)
@@ -30,18 +97,17 @@ namespace PeriodicBatching.ConsoleTest
             Console.WriteLine("#################### PROCESSING FINISH");
         }
 
-        public static async Task SingleFailure(Exception e, int failures, int queueTotal)
+        public static void SingleFailure(Exception e, int failures, int queueTotal)
         {
-            await Task.Delay(50);
+            Thread.Sleep(500);
 
             Console.WriteLine("#################### FAILURES {0} - {1}", failures, DateTime.Now.ToString("yyyy-MM-ss HH:mm:ss"));
             Console.WriteLine(e.Message);
         }
 
-        public static async Task DropBatch(List<SomeEvent> events)
+        public static void DropBatch(List<SomeEvent> events)
         {
-            await Task.Delay(50);
-
+            Thread.Sleep(500);
             Console.WriteLine("#################### DropBatch START {0}", DateTime.Now.ToString("yyyy-MM-ss HH:mm:ss"));
 
             foreach (var _event in events)
@@ -54,10 +120,9 @@ namespace PeriodicBatching.ConsoleTest
             Console.WriteLine("#################### DropBatch FINISH");
         }
 
-        public static async Task DropQueue(List<SomeEvent> events)
+        public static void DropQueue(List<SomeEvent> events)
         {
-            await Task.Delay(50);
-
+            Thread.Sleep(500);
             Console.WriteLine("#################### DropQueue START {0}", DateTime.Now.ToString("yyyy-MM-ss HH:mm:ss"));
 
             foreach (var _event in events)
@@ -69,6 +134,7 @@ namespace PeriodicBatching.ConsoleTest
 
             Console.WriteLine("#################### DropQueue FINISH");
         }
+        #endregion
 
         static void Main(string[] args)
         {

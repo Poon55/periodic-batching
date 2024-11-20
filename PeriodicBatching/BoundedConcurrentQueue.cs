@@ -25,7 +25,6 @@ namespace PeriodicBatching
             {
                 throw new ArgumentOutOfRangeException(nameof(queueLimit), "queue limit must be positive");
             }
-
             this.QueueLimit = queueLimit;
         }
 
@@ -57,6 +56,18 @@ namespace PeriodicBatching
 
             Interlocked.Decrement(ref this.Counter);
             return false;
+        }
+
+        public void GcClear()
+        {
+            if(this.Queue.Count == 0)
+            {
+                this.Queue.Clear();
+                if (this.QueueLimit != NON_BOUNDED)
+                {
+                    Interlocked.Exchange(ref this.Counter, 0);
+                }
+            }
         }
     }
 }
